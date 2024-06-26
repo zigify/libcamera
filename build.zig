@@ -95,37 +95,37 @@ pub fn build(b: *std.Build) void {
 
     lib.addIncludePath(b.path("include"));
     // /include/libcamera dir
-    lib.installHeader(b.path("include/libcamera/camera.h"), "camera.h");
-    lib.installHeader(b.path("include/libcamera/camera_manager.h"), "camera_manager.h");
-    lib.installHeader(b.path("include/libcamera/color_space.h"), "color_space.h");
-    lib.installHeader(b.path("include/libcamera/controls.h"), "controls.h");
-    lib.installHeader(b.path("include/libcamera/fence.h"), "fence.h");
-    lib.installHeader(b.path("include/libcamera/framebuffer.h"), "framebuffer.h");
-    lib.installHeader(b.path("include/libcamera/framebuffer_allocator.h"), "framebuffer_allocator.h");
-    lib.installHeader(b.path("include/libcamera/geometry.h"), "geometry.h");
-    lib.installHeader(b.path("include/libcamera/logging.h"), "logging.h");
-    lib.installHeader(b.path("include/libcamera/orientation.h"), "orientation.h");
-    lib.installHeader(b.path("include/libcamera/pixel_format.h"), "pixel_format.h");
-    lib.installHeader(b.path("include/libcamera/request.h"), "request.h");
-    lib.installHeader(b.path("include/libcamera/stream.h"), "stream.h");
-    lib.installHeader(b.path("include/libcamera/transform.h"), "transform.h");
+    lib.installHeader(b.path("include/libcamera/camera.h"), "libcamera/camera.h");
+    lib.installHeader(b.path("include/libcamera/camera_manager.h"), "libcamera/camera_manager.h");
+    lib.installHeader(b.path("include/libcamera/color_space.h"), "libcamera/color_space.h");
+    lib.installHeader(b.path("include/libcamera/controls.h"), "libcamera/controls.h");
+    lib.installHeader(b.path("include/libcamera/fence.h"), "libcamera/fence.h");
+    lib.installHeader(b.path("include/libcamera/framebuffer.h"), "libcamera/framebuffer.h");
+    lib.installHeader(b.path("include/libcamera/framebuffer_allocator.h"), "libcamera/framebuffer_allocator.h");
+    lib.installHeader(b.path("include/libcamera/geometry.h"), "libcamera/geometry.h");
+    lib.installHeader(b.path("include/libcamera/logging.h"), "libcamera/logging.h");
+    lib.installHeader(b.path("include/libcamera/orientation.h"), "libcamera/orientation.h");
+    lib.installHeader(b.path("include/libcamera/pixel_format.h"), "libcamera/pixel_format.h");
+    lib.installHeader(b.path("include/libcamera/request.h"), "libcamera/request.h");
+    lib.installHeader(b.path("include/libcamera/stream.h"), "libcamera/stream.h");
+    lib.installHeader(b.path("include/libcamera/transform.h"), "libcamera/transform.h");
     // install generated headers
-    lib.installHeader(b.path("include/libcamera/formats.h"), "formats.h");
-    lib.installHeader(version_h.getOutput(), "version.h");
-    lib.installHeader(b.path("include/libcamera/control_ids.h"), "control_ids.h");
-    lib.installHeader(b.path("include/libcamera/property_ids.h"), "property_ids.h");
-    lib.installHeader(b.path("include/libcamera/libcamera.h"), "libcamera.h");
+    lib.installHeader(b.path("include/libcamera/formats.h"), "libcamera/formats.h");
+    lib.installHeader(version_h.getOutput(), "libcamera/version.h");
+    lib.installHeader(b.path("include/libcamera/control_ids.h"), "libcamera/control_ids.h");
+    lib.installHeader(b.path("include/libcamera/property_ids.h"), "libcamera/property_ids.h");
+    lib.installHeader(b.path("include/libcamera/libcamera.h"), "libcamera/libcamera.h");
 
     // /include/libcamera/base dir
-    lib.installHeader(b.path("include/libcamera/base/bound_method.h"), "bound_method.h");
-    lib.installHeader(b.path("include/libcamera/base/class.h"), "class.h");
-    lib.installHeader(b.path("include/libcamera/base/compiler.h"), "compiler.h");
-    lib.installHeader(b.path("include/libcamera/base/flags.h"), "flags.h");
-    lib.installHeader(b.path("include/libcamera/base/object.h"), "object.h");
-    lib.installHeader(b.path("include/libcamera/base/shared_fd.h"), "shared_fd.h");
-    lib.installHeader(b.path("include/libcamera/base/signal.h"), "signal.h");
-    lib.installHeader(b.path("include/libcamera/base/span.h"), "span.h");
-    lib.installHeader(b.path("include/libcamera/base/unique_fd.h"), "unique_fd.h");
+    lib.installHeader(b.path("include/libcamera/base/bound_method.h"), "libcamera/base/bound_method.h");
+    lib.installHeader(b.path("include/libcamera/base/class.h"), "libcamera/base/class.h");
+    lib.installHeader(b.path("include/libcamera/base/compiler.h"), "libcamera/base/compiler.h");
+    lib.installHeader(b.path("include/libcamera/base/flags.h"), "libcamera/base/flags.h");
+    lib.installHeader(b.path("include/libcamera/base/object.h"), "libcamera/base/object.h");
+    lib.installHeader(b.path("include/libcamera/base/shared_fd.h"), "libcamera/base/shared_fd.h");
+    lib.installHeader(b.path("include/libcamera/base/signal.h"), "libcamera/base/signal.h");
+    lib.installHeader(b.path("include/libcamera/base/span.h"), "libcamera/base/span.h");
+    lib.installHeader(b.path("include/libcamera/base/unique_fd.h"), "libcamera/base/unique_fd.h");
 
     b.installArtifact(lib);
 }
