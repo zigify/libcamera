@@ -3,10 +3,6 @@
 /build/
 /patches/
 
-include/libcamera/formats.h
-include/libcamera/control_ids.h
-include/libcamera/property_ids.h
-
 *.patch
 *.pyc
 __pycache__/

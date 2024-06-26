@@ -25,6 +25,9 @@ pub fn build(b: *std.Build) void {
     };
 
     // Ideally, we'd have some sort of Zig script do this but it's okay.
+    // Need a way of getting this to be the first thing that runs.
+    const gen_headers = b.step("gen_headers", "Generate necessary headers. Temporary measure.");
+
     // Creates the control_ids.h file.
     const python3_gen_control_ids = b.addSystemCommand(&.{
         "python3",
@@ -41,7 +44,7 @@ pub fn build(b: *std.Build) void {
         "src/libcamera/control_ids_core.yaml",
         "src/libcamera/control_ids_rpi.yaml",
     });
-    lib.step.dependOn(&python3_gen_control_ids.step);
+    gen_headers.dependOn(&python3_gen_control_ids.step);
 
     // Creates the control_ids.h file.
     const python3_gen_property_ids = b.addSystemCommand(&.{
@@ -58,7 +61,7 @@ pub fn build(b: *std.Build) void {
         "src/libcamera/property_ids_draft.yaml",
         "src/libcamera/property_ids_core.yaml",
     });
-    lib.step.dependOn(&python3_gen_property_ids.step);
+    gen_headers.dependOn(&python3_gen_property_ids.step);
 
     // Creates the formats.h file.
     const python3_gen_formats = b.addSystemCommand(&.{
@@ -70,14 +73,14 @@ pub fn build(b: *std.Build) void {
         "include/libcamera/formats.h.in",
         "include/linux/drm_fourcc.h",
     });
-    lib.step.dependOn(&python3_gen_formats.step);
+    gen_headers.dependOn(&python3_gen_formats.step);
 
     const shell_libcamera_header = b.addSystemCommand(&.{
         "utils/gen-header.sh",
         "include/libcamera",
         "include/libcamera/libcamera.h",
     });
-    lib.step.dependOn(&shell_libcamera_header.step);
+    gen_headers.dependOn(&shell_libcamera_header.step);
 
     lib.addCSourceFiles(.{ .files = src, .flags = private_flag });
     lib.addCSourceFiles(.{ .files = base_src, .flags = private_flag });
