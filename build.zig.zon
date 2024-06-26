@@ -1,0 +1,25 @@
+.{
+    .name = "libcamera",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.13.0",
+
+    .dependencies = .{
+        .statically = .{
+            .url = "https://github.com/zigify/statically/archive/94c1dacb02ea75164c1bbb1420b1a66db88fdb8e.tar.gz",
+            .hash = "1220be99d9c1e095835a8cb83cf18a2078fa2102d834eb7a4c578be6f157caf71054",
+        },
+
+        .libyaml = .{
+            .url = "https://github.com/zigify/libyaml/archive/221c46ed17d4ab1682ac0d74fa3dc0a30057540c.tar.gz",
+            .hash = "1220f36c1285321c43c9bb7e3516be15c0aa74356c2c423b51fc42be5ce438fe3da5",
+        },
+    },
+
+    .paths = .{
+        "README",
+        "COPYING",
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
