@@ -27,11 +27,7 @@ pub fn build(b: *std.Build) void {
     lib.addCSourceFiles(.{ .files = src, .flags = private_flag });
     lib.addCSourceFiles(.{ .files = base_src, .flags = private_flag });
 
-    const property_ids = b.addConfigHeader(.{ .style = .{ .autoconf = b.path("include/libcamera/property_ids.h.in") } }, .{});
-    lib.addConfigHeader(property_ids);
-
     // Ideally, we'd have some sort of Zig script do this but it's okay.
-
     // Creates the control_ids.h file.
     const python3_gen_control_ids = b.addSystemCommand(&.{
         "python3",
