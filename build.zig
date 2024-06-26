@@ -79,6 +79,13 @@ pub fn build(b: *std.Build) void {
     });
     b.getInstallStep().dependOn(&python3_gen_formats.step);
 
+    const shell_libcamera_header = b.addSystemCommand(&.{
+        "utils/gen-header.sh",
+        "./include/libcamera",
+        "./include/libcamera/libcamera.h",
+    });
+    b.getInstallStep().dependOn(&shell_libcamera_header.step);
+
     lib.addIncludePath(b.path("include"));
     // /include/libcamera dir
     lib.installHeader(b.path("include/libcamera/camera.h"), "camera.h");
@@ -99,6 +106,7 @@ pub fn build(b: *std.Build) void {
     lib.installHeader(b.path("include/libcamera/formats.h"), "formats.h");
     lib.installHeader(b.path("include/libcamera/control_ids.h"), "control_ids.h");
     lib.installHeader(b.path("include/libcamera/property_ids.h"), "control_ids.h");
+    lib.installHeader(b.path("include/libcamera/libcamera.h"), "libcamera.h");
 
     // /include/libcamera/base dir
     lib.installHeader(b.path("include/libcamera/base/bound_method.h"), "bound_method.h");
