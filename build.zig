@@ -61,7 +61,7 @@ pub fn build(b: *std.Build) void {
         "./src/libcamera/property_ids_draft.yaml",
         "./src/libcamera/property_ids_core.yaml",
     });
-    b.getInstallStep().dependOn(&python3_gen_property_ids.step);
+    lib.step.dependOn(&python3_gen_property_ids.step);
 
     // Creates the formats.h file.
     const python3_gen_formats = b.addSystemCommand(&.{
@@ -73,14 +73,14 @@ pub fn build(b: *std.Build) void {
         "./include/libcamera/formats.h.in",
         "./include/linux/drm_fourcc.h",
     });
-    b.getInstallStep().dependOn(&python3_gen_formats.step);
+    lib.step.dependOn(&python3_gen_formats.step);
 
     const shell_libcamera_header = b.addSystemCommand(&.{
         "utils/gen-header.sh",
         "./include/libcamera",
         "./include/libcamera/libcamera.h",
     });
-    b.getInstallStep().dependOn(&shell_libcamera_header.step);
+    lib.step.dependOn(&shell_libcamera_header.step);
 
     lib.addIncludePath(b.path("include"));
     // /include/libcamera dir
