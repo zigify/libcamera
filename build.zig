@@ -24,9 +24,6 @@ pub fn build(b: *std.Build) void {
         "-DLIBCAMERA_BASE_PRIVATE",
     };
 
-    lib.addCSourceFiles(.{ .files = src, .flags = private_flag });
-    lib.addCSourceFiles(.{ .files = base_src, .flags = private_flag });
-
     // Ideally, we'd have some sort of Zig script do this but it's okay.
     // Creates the control_ids.h file.
     const python3_gen_control_ids = b.addSystemCommand(&.{
@@ -44,7 +41,7 @@ pub fn build(b: *std.Build) void {
         "src/libcamera/control_ids_core.yaml",
         "src/libcamera/control_ids_rpi.yaml",
     });
-    b.getInstallStep().dependOn(&python3_gen_control_ids.step);
+    lib.step.dependOn(&python3_gen_control_ids.step);
 
     // Creates the control_ids.h file.
     const python3_gen_property_ids = b.addSystemCommand(&.{
@@ -81,6 +78,9 @@ pub fn build(b: *std.Build) void {
         "include/libcamera/libcamera.h",
     });
     lib.step.dependOn(&shell_libcamera_header.step);
+
+    lib.addCSourceFiles(.{ .files = src, .flags = private_flag });
+    lib.addCSourceFiles(.{ .files = base_src, .flags = private_flag });
 
     lib.addIncludePath(b.path("include"));
     // /include/libcamera dir
