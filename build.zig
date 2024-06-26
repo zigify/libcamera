@@ -101,7 +101,7 @@ pub fn build(b: *std.Build) void {
     // install generated headers
     lib.installHeader(b.path("include/libcamera/formats.h"), "formats.h");
     lib.installHeader(b.path("include/libcamera/control_ids.h"), "control_ids.h");
-    lib.installHeader(b.path("include/libcamera/property_ids.h"), "control_ids.h");
+    lib.installHeader(b.path("include/libcamera/property_ids.h"), "property_ids.h");
     lib.installHeader(b.path("include/libcamera/libcamera.h"), "libcamera.h");
 
     // /include/libcamera/base dir
