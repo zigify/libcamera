@@ -33,16 +33,16 @@ pub fn build(b: *std.Build) void {
         "python3",
         "utils/gen-controls.py",
         "-o",
-        "./include/libcamera/control_ids.h",
+        "include/libcamera/control_ids.h",
         "--mode",
         "controls",
         "-t",
-        "./include/libcamera/control_ids.h.in",
+        "include/libcamera/control_ids.h.in",
         "-r",
-        "./src/libcamera/control_ranges.yaml",
-        "./src/libcamera/control_ids_draft.yaml",
-        "./src/libcamera/control_ids_core.yaml",
-        "./src/libcamera/control_ids_rpi.yaml",
+        "src/libcamera/control_ranges.yaml",
+        "src/libcamera/control_ids_draft.yaml",
+        "src/libcamera/control_ids_core.yaml",
+        "src/libcamera/control_ids_rpi.yaml",
     });
     b.getInstallStep().dependOn(&python3_gen_control_ids.step);
 
@@ -51,15 +51,15 @@ pub fn build(b: *std.Build) void {
         "python3",
         "utils/gen-controls.py",
         "-o",
-        "./include/libcamera/property_ids.h",
+        "include/libcamera/property_ids.h",
         "--mode",
         "properties",
         "-t",
-        "./include/libcamera/property_ids.h.in",
+        "include/libcamera/property_ids.h.in",
         "-r",
-        "./src/libcamera/control_ranges.yaml",
-        "./src/libcamera/property_ids_draft.yaml",
-        "./src/libcamera/property_ids_core.yaml",
+        "src/libcamera/control_ranges.yaml",
+        "src/libcamera/property_ids_draft.yaml",
+        "src/libcamera/property_ids_core.yaml",
     });
     lib.step.dependOn(&python3_gen_property_ids.step);
 
@@ -68,17 +68,17 @@ pub fn build(b: *std.Build) void {
         "python3",
         "utils/gen-formats.py",
         "-o",
-        "./include/libcamera/formats.h",
-        "./src/libcamera/formats.yaml",
-        "./include/libcamera/formats.h.in",
-        "./include/linux/drm_fourcc.h",
+        "include/libcamera/formats.h",
+        "src/libcamera/formats.yaml",
+        "include/libcamera/formats.h.in",
+        "include/linux/drm_fourcc.h",
     });
     lib.step.dependOn(&python3_gen_formats.step);
 
     const shell_libcamera_header = b.addSystemCommand(&.{
         "utils/gen-header.sh",
-        "./include/libcamera",
-        "./include/libcamera/libcamera.h",
+        "include/libcamera",
+        "include/libcamera/libcamera.h",
     });
     lib.step.dependOn(&shell_libcamera_header.step);
 
