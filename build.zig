@@ -82,6 +82,14 @@ pub fn build(b: *std.Build) void {
     });
     gen_headers.dependOn(&shell_libcamera_header.step);
 
+    const version_h = b.addConfigHeader(.{ .style = .{ .cmake = b.path("include/libcamera/version.h.in") } }, .{
+        .LIBCAMERA_VERSION_MAJOR = "0",
+        .LIBCAMERA_VERSION_MINOR = "3",
+        .LIBCAMERA_VERSION_PATCH = "0",
+    });
+
+    lib.addConfigHeader(version_h);
+
     lib.addCSourceFiles(.{ .files = src, .flags = private_flag });
     lib.addCSourceFiles(.{ .files = base_src, .flags = private_flag });
 
@@ -103,6 +111,7 @@ pub fn build(b: *std.Build) void {
     lib.installHeader(b.path("include/libcamera/transform.h"), "transform.h");
     // install generated headers
     lib.installHeader(b.path("include/libcamera/formats.h"), "formats.h");
+    lib.installHeader(version_h.getOutput(), "version.h");
     lib.installHeader(b.path("include/libcamera/control_ids.h"), "control_ids.h");
     lib.installHeader(b.path("include/libcamera/property_ids.h"), "property_ids.h");
     lib.installHeader(b.path("include/libcamera/libcamera.h"), "libcamera.h");
